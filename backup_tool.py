@@ -1,9 +1,9 @@
 import os
 import time
 import zipfile
+E = 'Ошибка: убедитесь в правильности адресса'
 
 while True:
-
     # просим ввести путь
     while True:
         source = input('Введите сохраняемую директорию (по умолчанию рабочая дирректория):\n')
@@ -11,10 +11,9 @@ while True:
             source = "C:\\My Documents"
             break
         elif not os.access(source, os.F_OK):    # если директории нет, то просим ввести еще раз
-            print('Ошибка: убедитесь в правильности адресса')
+            print(E)
         else:   # если все верно, то значение сохраняются
             break
-
     # тоже самое
     while True:
         target_dir = input('Введите директорию бекапа (по умолчанию D:\\backup):\n')
@@ -22,11 +21,11 @@ while True:
             target_dir = 'D:\\backup'
             break
         elif not os.access(target_dir, os.F_OK):
-            print('Ошибка: убедитесь в правильности адресса')
+            print(E)
         else:
             break
 
-    now = '{}_{}'.format(time.strftime('%Y%m%d'), time.strftime('%H%M%S'))
+    now = '{}_{}'.format(time.strftime('%Y%m%d'), time.strftime('%H%M%S')) # ГодМесяцДень_ЧасМинутаСекунда
     full_target = target_dir + os.sep + now + '.zip'
     print(full_target)
 
